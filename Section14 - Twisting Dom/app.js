@@ -64,16 +64,22 @@
 
 
 // MANIPULATING CLASSES
-const todo = document.querySelector('#todos .todo')
+// const todo = document.querySelector('#todos .todo')
 
-// todo.style.color = 'gray'
-// todo.style.textDecoration = 'line-through'
-// todo.style.opacity = '50%'
-// OR
-todo.setAttribute('class', 'done')
-// HOW TO CHECK IF TAG HAS ATTRIBUTE CLASS, 'INCLUDES'
-todo.classList.toggle('done')
-todo.classList.toggle('done')
-if(todo.setAttribute('class').includes('done')) {
-    todo.classList.toggle('done')
-}
+// // todo.style.color = 'gray'
+// // todo.style.textDecoration = 'line-through'
+// // todo.style.opacity = '50%'
+// // OR
+// todo.setAttribute('class', 'done')
+// // HOW TO CHECK IF TAG HAS ATTRIBUTE CLASS, 'INCLUDES'
+// todo.classList.toggle('done')
+// todo.classList.toggle('done')
+// if(todo.setAttribute('class').includes('done')) {
+//     todo.classList.toggle('done')
+// }
+
+// CREATING ELEMENTS
+
+const newh2 = document.createElement('h2');
+newh2.innerText = 'I like animals'
+newh2.classList.add('special')
