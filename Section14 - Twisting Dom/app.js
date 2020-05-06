@@ -80,6 +80,6 @@
 
 // CREATING ELEMENTS
 
-const newh2 = document.createElement('h2');
-newh2.innerText = 'I like animals'
-newh2.classList.add('special')
+// const newh2 = document.createElement('h2');
+// newh2.innerText = 'I like animals'
+// newh2.classList.add('special')
