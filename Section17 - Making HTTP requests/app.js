@@ -87,4 +87,11 @@
 
 // RECOMMENDED WAY - AXIOS
 
-axios.get()
+// const res = axios.get('https://swapi.dev/api/planets/')
+axios.get('https://swapi.dev/api/planets/')
+    .then((res) => {
+        console.log(res.data.results[0])
+    })
+    .catch((err) => {
+        console.log(err)
+    })
