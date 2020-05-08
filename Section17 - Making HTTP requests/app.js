@@ -88,10 +88,28 @@
 // RECOMMENDED WAY - AXIOS
 
 // const res = axios.get('https://swapi.dev/api/planets/')
-axios.get('https://swapi.dev/api/planets/')
-    .then((res) => {
-        console.log(res.data.results[0])
-    })
+// axios.get('https://swapi.dev/api/planets/')
+//     .then((res) => {
+//         console.log(res.data.results[0])
+//     })
+//     .catch((err) => {
+//         console.log(err)
+//     })
+
+const fetchNextPlanet = (url = 'https://swapi.dev/api/planets/') => {
+    return axios.get(url)
+} 
+const printPlanets = ({data}) => {
+    for(let planet of data.results) {
+        console.log(planet.name)
+    }
+    return Promise.resolve(data.next)
+}
+
+fetchNextPlanet()
+    .then(printPlanets)
+    .then(fetchNextPlanet)
+    .then(printPlanets)
     .catch((err) => {
-        console.log(err)
+        console.log('ERROR')
     })
