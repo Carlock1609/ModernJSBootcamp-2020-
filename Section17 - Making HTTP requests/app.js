@@ -96,20 +96,43 @@
 //         console.log(err)
 //     })
 
-const fetchNextPlanet = (url = 'https://swapi.dev/api/planets/') => {
-    return axios.get(url)
-} 
-const printPlanets = ({data}) => {
-    for(let planet of data.results) {
-        console.log(planet.name)
-    }
-    return Promise.resolve(data.next)
-}
+// const fetchNextPlanet = (url = 'https://swapi.dev/api/planets/') => {
+//     return axios.get(url)
+// } 
+// const printPlanets = ({data}) => {
+//     for(let planet of data.results) {
+//         console.log(planet.name)
+//     }
+//     return Promise.resolve(data.next)
+// }
 
-fetchNextPlanet()
-    .then(printPlanets)
-    .then(fetchNextPlanet)
-    .then(printPlanets)
-    .catch((err) => {
-        console.log('ERROR')
+// fetchNextPlanet()
+//     .then(printPlanets)
+//     .then(fetchNextPlanet)
+//     .then(printPlanets)
+//     .catch((err) => {
+//         console.log('ERROR')
+//     })
+
+// let array1 = []
+
+axios.get('https://favqs.com/api/qotd')
+    .then((res) => {
+        console.log(res.data)
+        return res.data
     })
+    .then((result) => {
+
+        console.log(result.quote.body)
+        return array1[result.quote.body]
+    })
+
+// axios.all(array1)
+//     .then((values) => {
+
+//         console.log(values)
+//         // array1.forEach(element => {
+//         // array1.push(element)
+//     });
+
+// getQuote
