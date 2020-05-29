@@ -73,8 +73,9 @@
 
 // const color1 = new Color(123,232,23)
 
-// CLASSES syntactical sugar.
+// CLASSES syntactical sugar. - THIS IS ALOT LIKE PYTHON except using 'this' instead of 'self'
 // When defining a class the constructor keyword is a must - it runs immediatly when instantiated
+// For each method, it does need to be assigned with this keyword - Down below i deconstructed it
 class Color {
     constructor(r,g,b, name) {
         this.r = r;
@@ -82,8 +83,13 @@ class Color {
         this.b = b;
         this.name = name;
     }
+    // THIS LINE CUTS DOWN ON CODE. IF YOU AHVE REPETITION IN YOUR METHODS, MAKE A METHOD TO CUT DOWN ON THIS USING 'this' KEYWORD
+    innerRGB() {
+        const {r,g,b} = this;
+        return `${r}, ${g}, ${b}`;
+    }
     rgb() {
-        return `rgb(${r}, ${g}, ${b})`;
+        return `rgb(${this.innerRGB()})`;
     }
     greet() {
         return `HELLO FROM ${this.name} THis is a method in the class!`
