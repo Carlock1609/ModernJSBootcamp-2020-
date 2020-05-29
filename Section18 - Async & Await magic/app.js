@@ -125,4 +125,93 @@ async function getPlanets() {
 
 // PARALLEL Vs. SEQUENTIAL REQUESTS
 
-// https:
+// SUQUENTIAL REQUEST
+// async function get3Pokemon() {
+//     // THIS WILL RUN IN ORDER, AWAIT MEANS IT WILL NOT MOVE ON UNTIL ITS RESOLVED, TEHY ARE GETTING SENT ONE AT A TIME AND ONCE RETURNED
+//     const poke1 = await axios.get('https://pokeapi.co/api/v2/pokemon/1')
+//     const poke2 = await axios.get('https://pokeapi.co/api/v2/pokemon/2')
+//     const poke3 = await axios.get('https://pokeapi.co/api/v2/pokemon/3')
+//     console.log(poke1.data)
+//     console.log(poke2.data)
+//     console.log(poke3.data)
+// }
+
+// PARALLEL REQUEST - ITS BETTER TO BE PARALLEL
+async function get3Pokemon() {
+    // THIS WILL RUN IN ORDER, AWAIT MEANS IT WILL NOT MOVE ON UNTIL ITS RESOLVED, TEHY ARE GETTING SENT ONE AT A TIME AND ONCE RETURNED
+    const prom1 = axios.get('https://pokeapi.co/api/v2/pokemon/1')
+    const prom2 = axios.get('https://pokeapi.co/api/v2/pokemon/2')
+    const prom3 = axios.get('https://pokeapi.co/api/v2/pokemon/3')
+    // We are awaiting resolved value below, and storing it to that variable
+    // Await means its waiting till its resolved.
+    const poke1 = await prom1
+    const poke2 = await prom2
+    const poke3 = await prom3
+    console.log(poke1.data)
+    console.log(poke2.data)
+    console.log(poke3.data)
+}
+// get3Pokemon()
+
+
+// DIFFERENCES BETWEEN PARRELEL/SEQUENTIAL
+function changeBodyColor(color, delay) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            document.body.style.backgroundColor = color;
+            resolve()
+        }, delay)
+    })
+}
+// changeBodyColor('yellow', 3000)
+// THIS IS PARRELEL, MORE DESIRABLE BECAUSE IT RUNS AT THE SAME TIME RATHER THAN SEQUENTIAL
+async function lightShow() {
+    const p1 = changeBodyColor('yellow', 1000)
+    const p2 = changeBodyColor('blue', 1000)
+    const p3 = changeBodyColor('brown', 1000)
+    const p4 = changeBodyColor('grey', 1000)
+    await p1
+    await p2
+    await p3
+    await p4
+}
+// lightShow()
+
+// const pokeList = []
+// const pokeNames = []
+
+// async function callPokemonAPI() {
+//     const getPokeList = await axios.get('https:/pokeapi.co/api/v2/pokemon/')
+
+//     pokeList.push(getPokeList.data.results)
+//     return new Promise(pokeList)
+// }
+// callPokemonAPI()
+//     .then((res) => {
+//         for(let names of res) {
+//             console.log(names)
+//         }
+//     })
+
+async function get3Pokemon() {
+    // THIS WILL RUN IN ORDER, AWAIT MEANS IT WILL NOT MOVE ON UNTIL ITS RESOLVED, TEHY ARE GETTING SENT ONE AT A TIME AND ONCE RETURNED
+    const prom1 = axios.get('https://pokeapi.co/api/v2/pokemon/1')
+    const prom2 = axios.get('https://pokeapi.co/api/v2/pokemon/2')
+    const prom3 = axios.get('https://pokeapi.co/api/v2/pokemon/3')
+    // We are awaiting resolved value below, and storing it to that variable
+    // Await means its waiting till its resolved.
+    const poke1 = await prom1
+    const poke2 = await prom2
+    const poke3 = await prom3
+    // Promise.all takes promises and puts them into an array.
+    const results = await Promise.all([poke1, poke2, poke3])
+    console.log(results)
+    printPokemon(results)
+}
+
+function printPokemon(results) {
+    for(let pokemon of results) {
+        console.log(pokemon.data.name)
+    }
+}
+get3Pokemon()
